@@ -11,9 +11,8 @@ http://www.springframework.org/schema/context/spring-context-3.0.xsd">
 	<bean id="foo" class="com.foobar.Foo" scope="prototype">
 		<constructor-arg index="0" value="Foo1"/>
 	</bean>
-	<bean id="bar" class="com.foobar.Bar">
+	<bean id="bar" class="com.foobar.Bar" autowire="byName">
 		<constructor-arg type="int" value="26"/>
 		<constructor-arg type="java.lang.String" value="Bar1"/>
-		<property name="foo" ref="foo"/>
 	</bean>
 </beans>

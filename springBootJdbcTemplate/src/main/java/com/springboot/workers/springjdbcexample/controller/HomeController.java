@@ -1,12 +1,12 @@
 package com.springboot.workers.springjdbcexample.controller;
 
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.springboot.workers.springjdbcexample.util.DateTimeUtilities;
 
 
-@RequestMapping
+@RestController
 public class HomeController {
 	@GetMapping("/")
 	public String showWelcomMessage() {

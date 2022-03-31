@@ -10,7 +10,7 @@ import com.springboot.workers.springjdbcexample.dao.WorkerDAO;
 import com.springboot.workers.springjdbcexample.mapper.WorkerMapper;
 import com.springboot.workers.springjdbcexample.model.Worker;
 
-@Repository
+@Repository("workerMySqlRepo")
 public class WorkerRepository implements WorkerDAO {
 
 	@Autowired

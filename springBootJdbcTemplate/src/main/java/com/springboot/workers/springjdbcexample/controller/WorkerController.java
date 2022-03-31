@@ -3,6 +3,8 @@ package com.springboot.workers.springjdbcexample.controller;
 import java.util.Date;
 import java.util.List;
 
+import javax.annotation.Resource;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,7 +16,8 @@ import com.springboot.workers.springjdbcexample.repository.WorkerRepository;
 @RestController
 @RequestMapping("/worker")
 public class WorkerController {
-	@Autowired
+//	@Autowired
+	@Resource(name="workerMySqlRepo")
 	private WorkerRepository workerRepository;
 
 	@GetMapping("/showWorker")

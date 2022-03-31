@@ -10,7 +10,7 @@ public class MainApp {
 		WithdrawEventPublisher publisher = context.getBean("customEventPublisher", WithdrawEventPublisher.class);
 		
 		SavingsAccount savings = context.getBean("savings", SavingsAccount.class);
-		double amount = 0;
+		double amount = 1524;
 		if(savings.getAccBalanace() != savings.withdraw(amount)) {
 			publisher.publish(amount, savings);
 		}

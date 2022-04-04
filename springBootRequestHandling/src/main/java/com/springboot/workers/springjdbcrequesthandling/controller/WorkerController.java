@@ -3,8 +3,7 @@ package com.springboot.workers.springjdbcrequesthandling.controller;
 import java.util.List;
 import java.util.Map;
 
-import javax.annotation.Resource;
-
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,54 +16,42 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.springboot.workers.springjdbcrequesthandling.model.Worker;
-import com.springboot.workers.springjdbcrequesthandling.repository.WorkerRepository;
-
+import com.springboot.workers.springjdbcrequesthandling.service.WorkerService;
 
 @RestController
 @RequestMapping("/worker")
 public class WorkerController {
-//	@Autowired
-	@Resource(name="workerMySqlRepo")
-	private WorkerRepository workerRepository;
+	@Autowired
+	private WorkerService workerService;
 
 	@GetMapping("/worker/{id}")
 	public Worker showWorker(@PathVariable int id) {
-		return this.workerRepository.getWorker(id);
+		return this.workerService.getWorker(id);
 
 	}
 
 	@GetMapping("/all")
 	public List<Worker> showAllWorker() {
-		return this.workerRepository.getWorkers();
+		return this.workerService.getAllWorkers();
 
 	}
 
 	@PostMapping("/create")
 	@ResponseStatus(HttpStatus.CREATED)
 	public Boolean createWorker(@RequestBody Worker worker) {
-		int rowsAffected = this.workerRepository.add(worker);
-		if(rowsAffected == 1) {
-			return true;
-		}
-		return false;
+		return this.workerService.createWorker(worker);
+
 	}
 
 	@PatchMapping("/update/{id}")
 	public Boolean updateWorker(@RequestBody Map<String, String> params, @PathVariable int id) {
-		int rowsAffected = this.workerRepository.replaceEmail(params.get("email"), id);
-		System.out.println("rows affected " + rowsAffected);
-		if(rowsAffected == 1) {
-			return true;
-		}
-		return false;
+		return this.workerService.updateWorkerEmailId(params.get("email"), id);
+
 	}
 
 	@DeleteMapping("/delete/{id}")
 	public Boolean deleteWorker(@PathVariable int id) {
-		int rowsAffected = this.workerRepository.delete(id);
-		if(rowsAffected == 1) {
-			return true;
-		}
-		return false;
+		return this.workerService.deleteWorker(id);
+
 	}
 }
